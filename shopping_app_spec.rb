@@ -15,7 +15,6 @@ describe 'Auth' do
     it "Auth login" do
         post '/auth/login'
         expect(last_response).to be_ok   
-        #last_response.should be_ok
     end
   
     it "Auth logout" do
@@ -40,19 +39,18 @@ describe 'User' do
     end
 
     it "get attiributes of a single user" do
-        get '/user/:user_id' #/user/{user_id}
+        get '/user/1' #/user/{user_id}
         expect( last_response.status ).to eq(200)
 
-       # expect(last_response)
     end
 
     it "get cart collection of a user" do 
-        get '/user/:user_id/carts' #/user/{user_id}/carts
+        get '/user/1/carts' #/user/{user_id}/carts
         expect( last_response.status ).to eq(200)
     end
 
     it "create a new cart for user" do
-        post '/user/:user_id/carts' #/user/{user_id}/carts
+        post '/user/1/carts' #/user/{user_id}/carts
         expect( last_response.status ).to eq(404)
     end
 end
@@ -68,13 +66,12 @@ describe 'Products' do
 
     it "create a new product" do
         post '/products' 
-        expect( last_response.status ).to eq( 200 ) # response = created ? #404
+        expect( last_response.status ).to eq( 200 ) # response = created ? #201
     end
 
     it "get attiributes of a single product" do
-        # products = Products.first(title: 'Products#1')
-        #get '/products/:product_id' #/products/{product_id}
-        #expect(last_response.body).to include_json(id:products1.id, title: products1.title)
+        get '/products/1' #/products/{product_id}
+        expect( last_response.status ).to eq( 404 )
     end
 end 
 
